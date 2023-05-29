@@ -1,0 +1,66 @@
+create database toko;
+use toko;
+
+create table if not exists barang (
+  id int auto_increment not null primary key,
+  nama varchar(40) not null,
+  harga int not null default 0,
+  stok int not null default 0,
+  foto varchar(70) not null default ''
+);
+
+insert into barang(nama,harga,stok, foto) values
+      ('Sepatu Adidas 1',500000,5,'sepatu1.jpg'),
+      ('Sepatu Adidas 2',600000,5,'sepatu2.jpg'),
+      ('Sepatu Converse 1',450000,6,'sepatu3.jpg'),
+      ('Sepatu Converse 2',550000,6,'sepatu4.jpg'),
+      ('Sepatu Sneakers 1',560000,7,'sepatu5.jpg'),
+      ('Sepatu Sneakers 2',660000,7,'sepatu6.jpg'),
+      ('Sepatu Sneakers 3',760000,4,'sepatu7.jpg');
+
+insert into barang(nama,harga,stok, foto) values
+('Sepatu Sneakers 4',860000,4,'sepatu8.jpg');
+
+
+create table if not exists hjual (
+  idhjual int auto_increment not null primary key,
+  tanggal date not null,
+  namacust varchar(50) not null,
+  email varchar(50) not null default'',
+  notelp varchar(20) not null default ''
+);
+
+create table if not exists djual (
+  iddjual int auto_increment not null primary key,
+  idhjual int not null,
+  idbarang int not null,
+  qty int not null,
+  harga int not null
+);
+
+create table if not exists matakuliah(
+  id int auto_increment not null primary key,
+  kodemk varchar(40) not null,
+  nama varchar(40) not null,
+  sks int not null default 0
+);
+
+insert into matakuliah(kodemk, nama, sks) values
+('MK123','Algoritma dan Pemrograman',3),
+('MK234','Prak. Algoritma dan Pemrograman',2),
+('MK345','Pengantar Teknologi Informasi',2),
+('MK456','Pendidikan Agama',2),
+('MK567','Praktikum Sistem Operasi',1);
+
+create table if not exists krs(
+  idkrs int(11) auto_increment not null primary key,
+  nim int(11) not null,
+  nama varchar(40) not null,
+  prodi varchar(20) not null
+);
+
+create table if not exists dkrs(
+  iddkrs int(11) auto_increment not null primary key,
+  idkrs int(11) not null,
+  idmk varchar(40) not null
+);
